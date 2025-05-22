@@ -19,70 +19,80 @@ If y represents the dependent variable and x the independent variable, this rela
 
 ![image](https://user-images.githubusercontent.com/104613195/168225866-ac8f6610-bdc3-4ac2-a24e-2b24ba08e189.png)
 
+
+
+
+
+
+
+
+
+
+
 # Program :
-```python 
+
+
+
+```python
+#Developed by : GAUTHAM KRISHNA S
+#Register No : 212223240036
 import numpy as np
+import math
 import matplotlib.pyplot as plt
-
-# Getting Inputs
-print("Enter the values of X separated by space")
-X = np.array([int(i) for i in input().split()])
-
-print("Enter the values of Y separated by space")
-Y = np.array([int(i) for i in input().split()])
-
-N = len(X)
-print(X, Y, N, sep='\n')
-
-# Calculating Sums and Means
-SumX = np.sum(X)
-SumY = np.sum(Y)
-SumX2 = np.sum(X**2)
-SumY2 = np.sum(Y**2)
-SumXY = np.sum(X * Y)
-
-MeanX = SumX / N
-MeanY = SumY / N
-
-# Calculating Regression Coefficient
-num = (N * SumXY) - (SumX * SumY)
-den = (N * SumX2) - (SumX**2)
-RegressionCoef = num / den
-
-# Regression Line Equation
-print(f"The Regression Y on X is Y = {RegressionCoef:.3f} ( X - {MeanX:.3f}) + {MeanY:.3f}")
-
-# Define Regression Function
-def Regression(x):
-    return MeanY + (RegressionCoef * (x - MeanX))
-
-# Plotting the Graph
-plt.scatter(X, Y)
-plt.plot(X, Regression(X))
-plt.xlabel("X-Data")
-plt.ylabel("Y-Data")
-plt.legend(['Data points', 'Regression Line'])
+x=[ int(i) for i in input().split()]
+y=[ int(i) for i in input().split()]
+N=len(x)
+Sx=0
+Sy=0
+Sxy=0
+Sx2=0
+Sy2=0
+for i in range(0,N):
+    Sx=Sx+x[i]
+    Sy=Sy+y[i]
+    Sxy=Sxy+x[i]*y[i]
+    Sx2=Sx2+x[i]**2
+    Sy2=Sy2+y[i]**2
+r=(N*Sxy-Sx*Sy)/(math.sqrt(N*Sx2-Sx**2)*math.sqrt(N*Sy2-Sy**2))
+print("The Correlation coefficient is %0.3f"%r)
+byx=(N*Sxy-Sx*Sy)/(N*Sx2-Sx**2)
+xmean=Sx/N
+ymean=Sy/N
+print("The Regression line Y on X is ::: y = %0.3f + %0.3f (x-%0.3f)"%(ymean,byx,xmean))
+plt.scatter(x,y)
+def Reg(x):
+  return ymean + byx*(x-xmean)
+x=np.linspace(20,80,51)
+y1=Reg(x)
+plt.plot(x,y1,'r')
+plt.xlabel('x-data')
+plt.ylabel('y-data')
+plt.legend(['Regression Line','Data points'])
 plt.show()
-```
 
-## Input
-```
-Enter the values of X separated by space  
-25 28 35 32 31 36 29 38 34 32
-
-Enter the values of Y separated by space  
-43 46 49 41 36 32 31 30 33 39
 ```
 
 # Output 
-```
-[25 28 35 32 31 36 29 38 34 32]
-[43 46 49 41 36 32 31 30 33 39]
-10
-The Regression Y on X is Y = -0.664 ( X - 32.000) + 38.000
-```
-![alt text](OutputGraph.png)
+![image](https://github.com/gauthamkrishna7/Correlation_Regression/assets/141175025/ee5f0956-ef5c-48f7-863d-c802343a1db0)
+
+
+
+
+![image](https://github.com/gauthamkrishna7/Correlation_Regression/assets/141175025/b7324d12-f1bb-409c-b078-632f9db660c7)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Result
-Thus the program is implemented and Executed Successfully
+The Correlation and regression for data analysis of objects from feeder using probability
+ distribution are calculated.
